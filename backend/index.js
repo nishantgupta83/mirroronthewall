@@ -27,6 +27,12 @@ let messages = [
     content: "Don’t forget to bring your lunch.",
     timestamp: "2025-06-01 19:15",
   },
+    {
+    id: 3,
+    sender: "Dad",
+    content: "Wats up.",
+    timestamp: "2025-06-01 20:15",
+  },
 ];
 
 app.get('/api/messages', (req, res) => {
