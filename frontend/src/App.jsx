@@ -31,9 +31,9 @@ function App() {
           </Card>
         ))}
       </div>
-      <Button className="mt-4" onClick={() => alert("Alerts and settings coming soon!")}>
-        Configure Alerts
-      </Button>
+ // <Button className="mt-4" onClick={() => alert("Alerts and settings coming soon!")}>
+ //       Configure Alerts
+ //     </Button>
     </div>
   );
 }
