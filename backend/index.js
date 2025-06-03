@@ -29,7 +29,7 @@ let messages = [
   },
     {
     id: 3,
-    sender: "Dad",
+    sender: "Bro",
     content: "Wats up.",
     timestamp: "2025-06-01 20:15",
   }
