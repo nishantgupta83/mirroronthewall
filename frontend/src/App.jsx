@@ -11,7 +11,7 @@ function App() {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/api/messages")
+    fetch("http://https://mirroronthewall-backend.onrender.com/api/messages")
       .then((res) => res.json())
       .then(setMessages)
       .catch((err) => console.error("Error fetching messages:", err));
