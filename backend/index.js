@@ -32,7 +32,7 @@ let messages = [
     sender: "Dad",
     content: "Wats up.",
     timestamp: "2025-06-01 20:15",
-  },
+  }
 ];
 
 app.get('/api/messages', (req, res) => {
