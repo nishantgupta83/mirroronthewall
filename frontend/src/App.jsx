@@ -32,15 +32,17 @@ function App() {
       <h1 className="text-3xl font-bold mb-4">Kid Message Monitor</h1>
 
       <div className="grid gap-4">
-        {messages.map((msg) => (
-          <Card key={msg.id}>
-            <CardContent>
-              <p className="text-sm text-gray-500">From: {msg.sender}</p>
-              <p className="text-lg">{msg.content}</p>
-              <p className="text-xs text-right text-gray-400">{msg.timestamp}</p>
-            </CardContent>
-          </Card>
-        ))}
+        {[...messages]
+                .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+                .map((msg) => (
+                  <Card key={msg.id}>
+                    <CardContent>
+                      <p className="text-sm text-gray-500">From: {msg.sender}</p>
+                      <p className="text-lg">{msg.content}</p>
+                      <p className="text-xs text-right text-gray-400">{msg.timestamp}</p>
+                    </CardContent>
+                  </Card>
+              ))}
       </div>
 
       <Button className="mt-4" onClick={handleAlertClick}>
