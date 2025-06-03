@@ -1,8 +1,3 @@
-// ----------------------------
-// FRONTEND UPDATES
-// ----------------------------
-
-// File: src/App.jsx
 import React, { useEffect, useState } from "react";
 import { Card, CardContent } from "./components/ui/card";
 import { Button } from "./components/ui/button";
@@ -11,15 +6,31 @@ function App() {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    fetch("http://https://mirroronthewall-backend.onrender.com/api/messages")
+    fetch("https://mirroronthewall-backend.onrender.com/api/messages")
       .then((res) => res.json())
       .then(setMessages)
       .catch((err) => console.error("Error fetching messages:", err));
   }, []);
 
+  const handleAlertClick = async () => {
+    try {
+      const response = await fetch("https://mirroronthewall-backend.onrender.com/api/alerts");
+      if (!response.ok) throw new Error("Failed to fetch alerts");
+
+      const data = await response.json();
+      console.log("Fetched Alerts:", data);
+
+      alert("Fetched alerts successfully! Check the console.");
+    } catch (error) {
+      console.error("Error fetching alerts:", error);
+      alert("Failed to fetch alerts. See console for details.");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 p-4">
       <h1 className="text-3xl font-bold mb-4">Kid Message Monitor</h1>
+
       <div className="grid gap-4">
         {messages.map((msg) => (
           <Card key={msg.id}>
@@ -31,45 +42,10 @@ function App() {
           </Card>
         ))}
       </div>
-      {/*  <Button className="mt-4" onClick={() => alert("Alerts and settings coming soon!")}>
-        Configure Alerts
-      </Button> */}
 
-      <Button className="mt-4" onClick={
-        () => 
-      // src/components/AlertConfig.js (example file)
-            import React from "react";
-            
-            const AlertConfig = () => {
-              const handleClick = async () => {
-                try {
-                  const response = await fetch("https://mirroronthewall-backend.onrender.com/api/alerts");
-                  if (!response.ok) throw new Error("Failed to fetch alerts");
-            
-                  const data = await response.json();
-                  console.log("Fetched Alerts:", data);
-            
-                  alert("Fetched alerts successfully! Check the console.");
-                } catch (error) {
-                  console.error("Error fetching alerts:", error);
-                  alert("Failed to fetch alerts. See console for details.");
-                }
-              };
-            
-              return (
-                <div>
-                  <h1>Kid Message Monitor</h1>
-                  <button onClick={handleClick}>Configure Alerts</button>
-                </div>
-              );
-            };
-            
-            export default AlertConfig;
-      
-      }>
+      <Button className="mt-4" onClick={handleAlertClick}>
         Configure Alerts
-      </Button> 
-      
+      </Button>
     </div>
   );
 }
