@@ -31,9 +31,45 @@ function App() {
           </Card>
         ))}
       </div>
- // <Button className="mt-4" onClick={() => alert("Alerts and settings coming soon!")}>
- //       Configure Alerts
- //     </Button>
+      {/*  <Button className="mt-4" onClick={() => alert("Alerts and settings coming soon!")}>
+        Configure Alerts
+      </Button> */}
+
+      <Button className="mt-4" onClick={
+        () => 
+      // src/components/AlertConfig.js (example file)
+            import React from "react";
+            
+            const AlertConfig = () => {
+              const handleClick = async () => {
+                try {
+                  const response = await fetch("https://mirroronthewall-backend.onrender.com/api/alerts");
+                  if (!response.ok) throw new Error("Failed to fetch alerts");
+            
+                  const data = await response.json();
+                  console.log("Fetched Alerts:", data);
+            
+                  alert("Fetched alerts successfully! Check the console.");
+                } catch (error) {
+                  console.error("Error fetching alerts:", error);
+                  alert("Failed to fetch alerts. See console for details.");
+                }
+              };
+            
+              return (
+                <div>
+                  <h1>Kid Message Monitor</h1>
+                  <button onClick={handleClick}>Configure Alerts</button>
+                </div>
+              );
+            };
+            
+            export default AlertConfig;
+      
+      }>
+        Configure Alerts
+      </Button> 
+      
     </div>
   );
 }
